@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".SignUp">
+
+    <TextView
+        android:id="@+id/txttitle"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:background="@drawable/security"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:paddingVertical="35dp"
+        android:text="SIGN UP"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="50sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/txttitle"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        android:paddingLeft="4dp"
+        android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/txtSignUpEmail"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/shape"
+            android:drawableStart="@drawable/custom_email"
+            android:drawableLeft="@drawable/custom_email"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:hint=" Email Address"
+            android:inputType="textEmailAddress"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="#808080" />
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textStyle="bold"
+        android:paddingLeft="4dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/txtSignUpPass"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="30dp"
+        android:hint=" Password"
+        android:textColorHint="#808080"
+        android:textColor="@color/black"
+        android:inputType="textPassword"
+        android:paddingVertical="1dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:background="@drawable/shape"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:drawableLeft="@drawable/custom_password"
+        android:drawableStart="@drawable/custom_password"/>
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="30dp"
+            android:stretchColumns="1">
+
+            <TableRow>
+                <CheckBox
+                    android:id="@+id/chk1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Show Password" />
+
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shrinkColumns="0"
+            android:gravity="center">
+
+            <TableRow>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSignUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginVertical="20dp"
+                    android:background="@drawable/button_btn"
+                    android:text="Register"
+                    android:layout_weight="1"
+                    android:textColor="@color/white" />
+
+            </TableRow>
+        </TableLayout>
+
+    <TextView
+        android:id="@+id/AlreadyMember"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="Already a member?"
+        android:onClick="navigate_sign_in"
+        android:clickable="true"
+        android:gravity="center"
+        android:textColor="@color/black"/>
+
+   </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "609121608132",
+    "project_id": "prosafety-apps",
+    "storage_bucket": "prosafety-apps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609121608132:android:d155b11402eb1a1ffbc491",
+        "android_client_info": {
+          "package_name": "com.fyp.prosafetyapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "609121608132-jkps1sl5lj796tjmp18fh8lauh0qsr4f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEcWKlji-d7ZHeRja8o3t8rHuGwF24nio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "609121608132-jkps1sl5lj796tjmp18fh8lauh0qsr4f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
