@@ -1,93 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    android:id="@+id/drawer_layout"
-    tools:context=".MainPage">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    <include
-        layout="@layout/main_toolbar"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center">
-
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ImageButton
-            android:id="@+id/btnSOS"
-            android:layout_width="165dp"
-            android:layout_height="165dp"
-            android:layout_margin="12dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/round_button"
-            android:gravity="center"
-            android:src="@drawable/sos"
-            app:backgroundTint="#D3D3D3" />
-
-            <ListView
-                android:id="@+id/ListView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp" />
-
+<?xml version='1.0' encoding='utf-8'?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:background="@color/safety_background" android:id="@+id/drawer_layout" android:layout_height="match_parent" android:layout_width="match_parent">
+  <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
+    <include layout="@layout/main_toolbar" />
+    <LinearLayout android:layout_height="0dp" android:layout_weight="1" android:layout_width="match_parent" android:orientation="vertical" android:padding="24dp">
+      <TextView style="@style/Safety.Title" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Trusted contacts" />
+      <TextView style="@style/Safety.Caption" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Add up to 5 people who can receive your shake-triggered help message." />
+      <LinearLayout android:background="@drawable/safety_surface" android:gravity="center_vertical" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:layout_width="match_parent" android:orientation="horizontal" android:padding="16dp">
+        <ImageButton app:tint="@color/white" android:background="@drawable/safety_button" android:contentDescription="Add a trusted contact" android:id="@+id/btnSOS" android:layout_height="56dp" android:layout_width="56dp" android:padding="14dp" android:src="@drawable/ic_add_contact" />
+        <LinearLayout android:layout_height="wrap_content" android:layout_marginLeft="16dp" android:layout_weight="1" android:layout_width="0dp" android:orientation="vertical">
+          <TextView style="@style/Safety.Body" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Add a trusted contact" />
+          <TextView style="@style/Safety.Caption" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Tap the + button to choose from your phone" />
+        </LinearLayout>
+      </LinearLayout>
+      <TextView style="@style/Safety.Label" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="YOUR SAFETY CIRCLE" />
+      <FrameLayout android:layout_height="0dp" android:layout_weight="1" android:layout_width="match_parent">
+        <ListView android:divider="@android:color/transparent" android:dividerHeight="8dp" android:id="@+id/ListView" android:layout_height="match_parent" android:layout_width="match_parent" />
+        <LinearLayout android:gravity="center" android:id="@+id/contactEmpty" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical" android:padding="16dp">
+          <ImageView android:importantForAccessibility="no" android:layout_height="64dp" android:layout_marginBottom="12dp" android:layout_width="64dp" android:src="@drawable/logo" android:scaleType="fitCenter" />
+          <TextView style="@style/Safety.Body" android:gravity="center" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Your circle starts here" android:textStyle="bold" />
+          <TextView style="@style/Safety.Caption" android:gravity="center" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:layout_width="match_parent" android:text="Add a friend or family member you trust.&#10;You can save up to 5 contacts." />
+        </LinearLayout>
+      </FrameLayout>
+      <ToggleButton style="@style/Safety.Button" android:background="@drawable/safety_input" android:checked="false" android:id="@+id/torchlight" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_width="match_parent" android:onClick="toggleFlashLight" android:textColor="@color/safety_teal" android:textOff="Flashlight  /  Turn on" android:textOn="Flashlight  /  Turn off" />
+      <TextView style="@style/Safety.Caption" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_width="match_parent" android:text="Shake your phone 3 times to send a help message. SMS and location permissions are needed." />
     </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="bottom|right"
-                android:gravity="bottom"
-                android:orientation="vertical">
-
-                <ToggleButton
-                    android:id="@+id/torchlight"
-                    android:layout_width="65dp"
-                    android:layout_height="64dp"
-                    android:layout_gravity="bottom|right"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/flashlights"
-                    android:checked="false"
-                    android:gravity="center"
-                    android:onClick="toggleFlashLight"
-                    android:textOff=""
-                    android:textOn=""
-                    android:textSize="12dp"
-                    android:textStyle="bold"
-                    app:backgroundTint="#000000"
-                    app:layout_anchorGravity="bottom|right|end" />
-
-
-            </LinearLayout>
-
-    </RelativeLayout>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/white">
-
-        <include
-            layout="@layout/main_nav_drawer"/>
-    </RelativeLayout>
-
+  </LinearLayout>
+  <FrameLayout android:background="@color/white" android:elevation="16dp" android:layout_gravity="start" android:layout_height="match_parent" android:layout_width="320dp" android:visibility="visible">
+    <include layout="@layout/main_nav_drawer" />
+  </FrameLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

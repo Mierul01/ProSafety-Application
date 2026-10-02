@@ -1,142 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    tools:context=".SignUp">
-
-    <TextView
-        android:id="@+id/txttitle"
-        android:layout_width="match_parent"
-        android:layout_height="175dp"
-        android:background="@drawable/security"
-        android:fontFamily="cursive"
-        android:gravity="center"
-        android:paddingVertical="35dp"
-        android:text="SIGN UP"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="50sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/txttitle"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="30dp"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:textStyle="bold"
-        android:layout_marginTop="40dp"
-        android:paddingLeft="4dp"
-        android:textColor="@color/black"/>
-
-        <EditText
-            android:id="@+id/txtSignUpEmail"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginHorizontal="30dp"
-            android:background="@drawable/shape"
-            android:drawableStart="@drawable/custom_email"
-            android:drawableLeft="@drawable/custom_email"
-            android:drawablePadding="12dp"
-            android:ems="10"
-            android:hint=" Email Address"
-            android:inputType="textEmailAddress"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:textColor="@color/black"
-            android:textColorHint="#808080" />
-
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="30dp"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        android:textStyle="bold"
-        android:paddingLeft="4dp"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/black"/>
-
-    <EditText
-        android:id="@+id/txtSignUpPass"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="30dp"
-        android:hint=" Password"
-        android:textColorHint="#808080"
-        android:textColor="@color/black"
-        android:inputType="textPassword"
-        android:paddingVertical="1dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:background="@drawable/shape"
-        android:drawablePadding="12dp"
-        android:ems="10"
-        android:drawableLeft="@drawable/custom_password"
-        android:drawableStart="@drawable/custom_password"/>
-
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="30dp"
-            android:stretchColumns="1">
-
-            <TableRow>
-                <CheckBox
-                    android:id="@+id/chk1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Show Password" />
-
-            </TableRow>
-        </TableLayout>
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:shrinkColumns="0"
-            android:gravity="center">
-
-            <TableRow>
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSignUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginVertical="20dp"
-                    android:background="@drawable/button_btn"
-                    android:text="Register"
-                    android:layout_weight="1"
-                    android:textColor="@color/white" />
-
-            </TableRow>
-        </TableLayout>
-
-    <TextView
-        android:id="@+id/AlreadyMember"
-        android:textSize="15sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:text="Already a member?"
-        android:onClick="navigate_sign_in"
-        android:clickable="true"
-        android:gravity="center"
-        android:textColor="@color/black"/>
-
-   </LinearLayout>
-
-</RelativeLayout>
+<?xml version='1.0' encoding='utf-8'?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:background="@color/white" android:fillViewport="true" android:layout_height="match_parent" android:layout_width="match_parent">
+  <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:padding="24dp">
+    <LinearLayout android:gravity="center_vertical" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal">
+      <ImageView android:contentDescription="ProSafety FYP logo" android:layout_height="52dp" android:layout_width="52dp" android:src="@drawable/logo" android:scaleType="fitCenter" />
+      <TextView android:layout_height="wrap_content" android:layout_marginLeft="12dp" android:layout_width="wrap_content" android:text="ProSafety" android:textColor="@color/safety_navy" android:textSize="22sp" android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout android:background="@drawable/safety_soft" android:layout_height="wrap_content" android:layout_marginBottom="28dp" android:layout_marginTop="28dp" android:layout_width="match_parent" android:orientation="vertical" android:padding="24dp">
+      <ImageView android:importantForAccessibility="no" android:layout_height="96dp" android:layout_width="96dp" android:src="@drawable/logo" android:scaleType="fitCenter" />
+      <TextView style="@style/Safety.Section" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="A little preparation. More peace of mind." />
+      <TextView style="@style/Safety.Caption" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Your people. Your tools. Always within reach." />
+    </LinearLayout>
+    <TextView style="@style/Safety.Title" android:id="@+id/txttitle" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Create your account" />
+    <TextView style="@style/Safety.Caption" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Take the first step towards a safer everyday." />
+    <TextView style="@style/Safety.Label" android:labelFor="@id/txtSignUpEmail" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Email address" />
+    <EditText style="@style/Safety.Input" android:hint="you@example.com" android:id="@+id/txtSignUpEmail" android:imeOptions="actionNext" android:inputType="textEmailAddress" android:layout_height="wrap_content" android:layout_width="match_parent" />
+    <TextView style="@style/Safety.Label" android:labelFor="@id/txtSignUpPass" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Password" />
+    <EditText style="@style/Safety.Input" android:hint="At least 6 characters" android:id="@+id/txtSignUpPass" android:imeOptions="actionDone" android:inputType="textPassword" android:layout_height="wrap_content" android:layout_width="match_parent" />
+    <LinearLayout android:gravity="center_vertical" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal">
+      <CheckBox android:id="@+id/chk1" android:layout_height="48dp" android:layout_weight="1" android:layout_width="0dp" android:text="Show password" android:textColor="@color/safety_muted" android:textSize="13sp" />
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton style="@style/Safety.Button" android:id="@+id/btnSignUp" android:layout_height="56dp" android:layout_marginTop="16dp" android:layout_width="match_parent" android:text="Create account" />
+    <TextView style="@style/Safety.Body" android:clickable="true" android:focusable="true" android:gravity="center" android:id="@+id/AlreadyMember" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:layout_width="match_parent" android:minHeight="56dp" android:onClick="navigate_sign_in" android:text="Already have an account? Sign in" android:textColor="@color/safety_teal" android:textSize="14sp" />
+  </LinearLayout>
+</ScrollView>

@@ -11,7 +11,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.AlertDialog;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -58,6 +58,7 @@ public class MainPage extends AppCompatActivity {
         setContentView(R.layout.activity_main_page);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        DrawerUi.configure(drawerLayout, R.id.navContacts);
         toggleFlashLightOnOff = findViewById(R.id.torchlight);
 
         cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
@@ -97,6 +98,7 @@ public class MainPage extends AppCompatActivity {
 
         btnSOS = findViewById(R.id.btnSOS);
         listView=(ListView)findViewById(R.id.ListView);
+        listView.setEmptyView(findViewById(R.id.contactEmpty));
         db=new DBHelper(this);
         list=db.getAllContacts();
         customAdapter=new CustomAdapter(this,list);
@@ -109,10 +111,11 @@ public class MainPage extends AppCompatActivity {
                     Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
                     startActivityForResult(intent, PICK_CONTACT);
                 }else{
-                    Toast.makeText(MainPage.this, "Can't Add more than 5 Contacts", Toast.LENGTH_SHORT).show();
+                    SafetyFeedback.show(MainPage.this, "Can't Add more than 5 Contacts");
                 }
             }
         });
+        ((View)btnSOS.getParent()).setOnClickListener(v -> btnSOS.performClick());
     }
 
 
@@ -141,8 +144,8 @@ public class MainPage extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode==100){
-            if(grantResults[0]==PackageManager.PERMISSION_DENIED){
-                Toast.makeText(this, "Permissions Denied!\n Can't use the App!", Toast.LENGTH_SHORT).show();
+            if(grantResults.length == 0 || grantResults[0]==PackageManager.PERMISSION_DENIED){
+                SafetyFeedback.show(this, "Some safety features need permissions. You can enable them in your phone settings.");
             }
         }
     }
@@ -202,7 +205,7 @@ public class MainPage extends AppCompatActivity {
 
                 cameraManager.setTorchMode(getCameraID, true);
 
-                Toast.makeText(MainPage.this, "Flashlight is turned ON", Toast.LENGTH_SHORT).show();
+                SafetyFeedback.show(MainPage.this, "Flashlight is turned ON");
             } catch (CameraAccessException e) {
 
                 e.printStackTrace();
@@ -213,7 +216,7 @@ public class MainPage extends AppCompatActivity {
 
                 cameraManager.setTorchMode(getCameraID, false);
 
-                Toast.makeText(MainPage.this, "Flashlight is turned OFF", Toast.LENGTH_SHORT).show();
+                SafetyFeedback.show(MainPage.this, "Flashlight is turned OFF");
             } catch (CameraAccessException e) {
 
                 e.printStackTrace();
@@ -282,29 +285,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void ClickLogout(View view){
-
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(MainPage.this);
-        builder2.setTitle("Are you sure you want Log Out?");
-        builder2.setCancelable(true);
-
-        builder2.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MainPage.this, LogOutHandler.class));
-                overridePendingTransition(0,0);
-                dialog.cancel();
-            }
-        });
-
-        builder2.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
-
-        AlertDialog alert11 = builder2.create();
-        alert11.show();
-
+        SafetyDialog.confirmLogout(this);
     }
 
     protected void onPause(){

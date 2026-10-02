@@ -1,310 +1,71 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#D3D3D3"
-    android:orientation="vertical">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="133dp"
-        android:layout_margin="16dp"
-        android:onClick="ClickLogo"
-        android:src="@drawable/logo"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/cantora_one"
-        android:gravity="center"
-        android:text="Prosafety Application"
-        android:textAlignment="center"
-        android:textColor="#636363"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="#636363"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:onClick="ClickHome"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/autour_one"
-            android:padding="12dp"
-            android:text="Home"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:layout_marginRight="48dp"
-            android:src="@drawable/home"
-            app:tint="#000000" />
-
+<?xml version='1.0' encoding='utf-8'?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:background="@color/white" android:fillViewport="true" android:layout_height="match_parent" android:layout_width="match_parent" android:scrollbars="none">
+  <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+    <LinearLayout android:background="@drawable/drawer_header" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:padding="24dp">
+      <LinearLayout android:gravity="center_vertical" android:layout_height="48dp" android:layout_width="match_parent" android:orientation="horizontal">
+        <ImageView android:contentDescription="ProSafety FYP logo" android:layout_height="64dp" android:layout_width="64dp" android:src="@drawable/logo" android:scaleType="fitCenter" />
+        <Space android:layout_height="1dp" android:layout_weight="1" android:layout_width="0dp" />
+        <ImageButton android:background="?attr/selectableItemBackgroundBorderless" android:contentDescription="Close menu" android:layout_height="48dp" android:layout_width="48dp" android:onClick="ClickLogo" android:src="@drawable/ic_close_menu" />
+      </LinearLayout>
+      <TextView android:layout_height="wrap_content" android:layout_marginTop="12dp" android:layout_width="match_parent" android:text="ProSafety" android:textColor="@color/white" android:textSize="28sp" android:textStyle="bold" />
+      <TextView android:layout_height="wrap_content" android:layout_marginTop="4dp" android:layout_width="match_parent" android:text="Your everyday safety companion" android:textColor="#D5E4EE" android:textSize="13sp" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:onClick="ClickMain"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_weight="1"
-            android:padding="12dp"
-            android:text="SOS Page"
-            android:textStyle="bold"
-            android:fontFamily="@font/autour_one"
-            android:textColor="@color/black"
-            android:layout_marginLeft="16dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:layout_marginRight="48dp"
-            android:src="@drawable/sositem"
-            app:tint="#000000" />
-
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:paddingBottom="16dp" android:paddingLeft="12dp" android:paddingRight="12dp">
+      <TextView style="@style/Safety.Eyebrow" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="10dp" android:paddingLeft="12dp" android:paddingTop="20dp" android:text="YOUR SAFETY" />
+      <LinearLayout android:background="@drawable/drawer_row" android:clickable="true" android:focusable="true" android:gravity="center_vertical" android:id="@+id/navHome" android:layout_height="56dp" android:layout_width="match_parent" android:onClick="ClickHome" android:orientation="horizontal" android:paddingLeft="12dp" android:paddingRight="12dp">
+        <ImageView app:tint="@color/drawer_text" android:duplicateParentState="true" android:importantForAccessibility="no" android:layout_height="24dp" android:layout_width="24dp" android:src="@drawable/ic_home" />
+        <TextView android:duplicateParentState="true" android:layout_height="wrap_content" android:layout_marginLeft="16dp" android:layout_weight="1" android:layout_width="0dp" android:text="Home" android:textColor="@color/drawer_text" android:textSize="15sp" />
+        <TextView android:importantForAccessibility="no" android:layout_height="wrap_content" android:layout_width="16dp" android:text="›" android:textColor="@color/safety_muted" android:textSize="22sp" />
+      </LinearLayout>
+      <View android:background="@color/safety_border" android:importantForAccessibility="no" android:layout_height="1dp" android:layout_marginLeft="52dp" android:layout_marginRight="12dp" android:layout_width="match_parent" />
+      <LinearLayout android:background="@drawable/drawer_row" android:clickable="true" android:focusable="true" android:gravity="center_vertical" android:id="@+id/navContacts" android:layout_height="56dp" android:layout_width="match_parent" android:onClick="ClickMain" android:orientation="horizontal" android:paddingLeft="12dp" android:paddingRight="12dp">
+        <ImageView app:tint="@color/drawer_text" android:duplicateParentState="true" android:importantForAccessibility="no" android:layout_height="24dp" android:layout_width="24dp" android:src="@drawable/ic_account" />
+        <TextView android:duplicateParentState="true" android:layout_height="wrap_content" android:layout_marginLeft="16dp" android:layout_weight="1" android:layout_width="0dp" android:text="Trusted contacts" android:textColor="@color/drawer_text" android:textSize="15sp" />
+        <TextView android:importantForAccessibility="no" android:layout_height="wrap_content" android:layout_width="16dp" android:text="›" android:textColor="@color/safety_muted" android:textSize="22sp" />
+      </LinearLayout>
+      <View android:background="@color/safety_border" android:importantForAccessibility="no" android:layout_height="1dp" android:layout_marginLeft="52dp" android:layout_marginRight="12dp" android:layout_width="match_parent" />
+      <LinearLayout android:background="@drawable/drawer_row" android:clickable="true" android:focusable="true" android:gravity="center_vertical" android:id="@+id/navDirections" android:layout_height="56dp" android:layout_width="match_parent" android:onClick="ClickTrack" android:orientation="horizontal" android:paddingLeft="12dp" android:paddingRight="12dp">
+        <ImageView app:tint="@color/drawer_text" android:duplicateParentState="true" android:importantForAccessibility="no" android:layout_height="24dp" android:layout_width="24dp" android:src="@drawable/ic_location" />
+        <TextView android:duplicateParentState="true" android:layout_height="wrap_content" android:layout_marginLeft="16dp" android:layout_weight="1" android:layout_width="0dp" android:text="Directions" android:textColor="@color/drawer_text" android:textSize="15sp" />
+        <TextView android:importantForAccessibility="no" android:layout_height="wrap_content" android:layout_width="16dp" android:text="›" android:textColor="@color/safety_muted" android:textSize="22sp" />
+      </LinearLayout>
+      <View android:background="@color/safety_border" android:importantForAccessibility="no" android:layout_height="1dp" android:layout_marginLeft="52dp" android:layout_marginRight="12dp" android:layout_width="match_parent" />
+      <LinearLayout android:background="@drawable/drawer_row" android:clickable="true" android:focusable="true" android:gravity="center_vertical" android:id="@+id/navNews" android:layout_height="56dp" android:layout_width="match_parent" android:onClick="ClickNews" android:orientation="horizontal" android:paddingLeft="12dp" android:paddingRight="12dp">
+        <ImageView app:tint="@color/drawer_text" android:duplicateParentState="true" android:importantForAccessibility="no" android:layout_height="24dp" android:layout_width="24dp" android:src="@drawable/ic_news" />
+        <TextView android:duplicateParentState="true" android:layout_height="wrap_content" android:layout_marginLeft="16dp" android:layout_weight="1" android:layout_width="0dp" android:text="Safety news" android:textColor="@color/drawer_text" android:textSize="15sp" />
+        <TextView android:importantForAccessibility="no" android:layout_height="wrap_content" android:layout_width="16dp" android:text="›" android:textColor="@color/safety_muted" android:textSize="22sp" />
+      </LinearLayout>
+      <View android:background="@color/safety_border" android:importantForAccessibility="no" android:layout_height="1dp" android:layout_marginLeft="52dp" android:layout_marginRight="12dp" android:layout_width="match_parent" />
+      <LinearLayout android:background="@drawable/drawer_row" android:clickable="true" android:focusable="true" android:gravity="center_vertical" android:id="@+id/navEmergency" android:layout_height="56dp" android:layout_width="match_parent" android:onClick="ClickEmergency" android:orientation="horizontal" android:paddingLeft="12dp" android:paddingRight="12dp">
+        <ImageView app:tint="@color/safety_red" android:duplicateParentState="true" android:importantForAccessibility="no" android:layout_height="24dp" android:layout_width="24dp" android:src="@drawable/ic_phone" />
+        <TextView android:duplicateParentState="true" android:layout_height="wrap_content" android:layout_marginLeft="16dp" android:layout_weight="1" android:layout_width="0dp" android:text="Emergency call" android:textColor="@color/safety_red" android:textSize="15sp" />
+        <TextView android:background="@drawable/safety_surface" android:importantForAccessibility="no" android:layout_height="wrap_content" android:layout_width="wrap_content" android:padding="6dp" android:text="999" android:textColor="@color/safety_red" android:textSize="12sp" android:textStyle="bold" />
+      </LinearLayout>
+      <View android:background="@color/safety_border" android:importantForAccessibility="no" android:layout_height="1dp" android:layout_marginLeft="52dp" android:layout_marginRight="12dp" android:layout_width="match_parent" />
+      <TextView style="@style/Safety.Eyebrow" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="10dp" android:paddingLeft="12dp" android:paddingTop="20dp" android:text="ACCOUNT AND SUPPORT" />
+      <LinearLayout android:background="@drawable/drawer_row" android:clickable="true" android:focusable="true" android:gravity="center_vertical" android:id="@+id/navProfile" android:layout_height="56dp" android:layout_width="match_parent" android:onClick="ClickProfile" android:orientation="horizontal" android:paddingLeft="12dp" android:paddingRight="12dp">
+        <ImageView app:tint="@color/drawer_text" android:duplicateParentState="true" android:importantForAccessibility="no" android:layout_height="24dp" android:layout_width="24dp" android:src="@drawable/ic_person" />
+        <TextView android:duplicateParentState="true" android:layout_height="wrap_content" android:layout_marginLeft="16dp" android:layout_weight="1" android:layout_width="0dp" android:text="Your profile" android:textColor="@color/drawer_text" android:textSize="15sp" />
+        <TextView android:importantForAccessibility="no" android:layout_height="wrap_content" android:layout_width="16dp" android:text="›" android:textColor="@color/safety_muted" android:textSize="22sp" />
+      </LinearLayout>
+      <View android:background="@color/safety_border" android:importantForAccessibility="no" android:layout_height="1dp" android:layout_marginLeft="52dp" android:layout_marginRight="12dp" android:layout_width="match_parent" />
+      <LinearLayout android:background="@drawable/drawer_row" android:clickable="true" android:focusable="true" android:gravity="center_vertical" android:id="@+id/navSupport" android:layout_height="56dp" android:layout_width="match_parent" android:onClick="ClickAboutUs" android:orientation="horizontal" android:paddingLeft="12dp" android:paddingRight="12dp">
+        <ImageView app:tint="@color/drawer_text" android:duplicateParentState="true" android:importantForAccessibility="no" android:layout_height="24dp" android:layout_width="24dp" android:src="@drawable/ic_info" />
+        <TextView android:duplicateParentState="true" android:layout_height="wrap_content" android:layout_marginLeft="16dp" android:layout_weight="1" android:layout_width="0dp" android:text="About and support" android:textColor="@color/drawer_text" android:textSize="15sp" />
+        <TextView android:importantForAccessibility="no" android:layout_height="wrap_content" android:layout_width="16dp" android:text="›" android:textColor="@color/safety_muted" android:textSize="22sp" />
+      </LinearLayout>
+      <View android:background="@color/safety_border" android:importantForAccessibility="no" android:layout_height="1dp" android:layout_marginLeft="52dp" android:layout_marginRight="12dp" android:layout_width="match_parent" />
+      <LinearLayout android:background="@drawable/drawer_row" android:clickable="true" android:focusable="true" android:gravity="center_vertical" android:id="@+id/navShare" android:layout_height="56dp" android:layout_width="match_parent" android:onClick="ClickShare" android:orientation="horizontal" android:paddingLeft="12dp" android:paddingRight="12dp">
+        <ImageView app:tint="@color/drawer_text" android:duplicateParentState="true" android:importantForAccessibility="no" android:layout_height="24dp" android:layout_width="24dp" android:src="@drawable/ic_share_menu" />
+        <TextView android:duplicateParentState="true" android:layout_height="wrap_content" android:layout_marginLeft="16dp" android:layout_weight="1" android:layout_width="0dp" android:text="Share ProSafety" android:textColor="@color/drawer_text" android:textSize="15sp" />
+        <TextView android:importantForAccessibility="no" android:layout_height="wrap_content" android:layout_width="16dp" android:text="›" android:textColor="@color/safety_muted" android:textSize="22sp" />
+      </LinearLayout>
+      <View android:background="@color/safety_border" android:importantForAccessibility="no" android:layout_height="1dp" android:layout_marginLeft="52dp" android:layout_marginRight="12dp" android:layout_width="match_parent" />
+      <LinearLayout android:background="@drawable/drawer_row" android:clickable="true" android:focusable="true" android:gravity="center_vertical" android:id="@+id/navLogout" android:layout_height="56dp" android:layout_width="match_parent" android:onClick="ClickLogout" android:orientation="horizontal" android:paddingLeft="12dp" android:paddingRight="12dp">
+        <ImageView app:tint="@color/safety_red" android:duplicateParentState="true" android:importantForAccessibility="no" android:layout_height="24dp" android:layout_width="24dp" android:src="@drawable/ic_logout" />
+        <TextView android:duplicateParentState="true" android:layout_height="wrap_content" android:layout_marginLeft="16dp" android:layout_weight="1" android:layout_width="0dp" android:text="Log out" android:textColor="@color/safety_red" android:textSize="15sp" />
+      </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:onClick="ClickNews"
-        android:layout_marginBottom="5dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="News"
-            android:fontFamily="@font/autour_one"
-            android:padding="12dp"
-            android:textStyle="bold"
-            android:layout_marginStart="16dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="16dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:src="@drawable/news1"
-            android:layout_marginRight="48dp"
-            app:tint="#000000"/>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:onClick="ClickTrack"
-        android:layout_marginBottom="5dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Track Location"
-            android:fontFamily="@font/autour_one"
-            android:padding="12dp"
-            android:textStyle="bold"
-            android:layout_marginStart="16dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="16dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:src="@drawable/location1"
-            android:layout_marginRight="48dp"
-            app:tint="#000000"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:onClick="ClickProfile"
-        android:layout_marginBottom="5dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Your Profile"
-            android:fontFamily="@font/autour_one"
-            android:padding="12dp"
-            android:textStyle="bold"
-            android:layout_marginStart="16dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="16dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:src="@drawable/profileuser"
-            android:layout_marginRight="48dp"
-            app:tint="#000000"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:onClick="ClickEmergency"
-        android:layout_marginBottom="5dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Emergency Number"
-            android:fontFamily="@font/autour_one"
-            android:padding="12dp"
-            android:textStyle="bold"
-            android:layout_marginStart="16dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="16dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:src="@drawable/ic_999"
-            android:layout_marginRight="48dp"
-            app:tint="#000000"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:onClick="ClickAboutUs"
-        android:layout_marginBottom="5dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Contact Us"
-            android:fontFamily="@font/autour_one"
-            android:padding="12dp"
-            android:textStyle="bold"
-            android:layout_marginStart="16dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="16dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:src="@drawable/ic_email"
-            android:layout_marginRight="48dp"
-            app:tint="#000000"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:onClick="ClickLogout"
-        android:layout_marginBottom="5dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Log Out"
-            android:fontFamily="@font/autour_one"
-            android:padding="12dp"
-            android:textStyle="bold"
-            android:layout_marginStart="16dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="16dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:src="@drawable/ic_logout"
-            android:layout_marginRight="48dp"
-            app:tint="#000000"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:onClick="ClickShare"
-        android:layout_marginBottom="5dp"
-        android:layout_gravity="bottom">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Share"
-            android:fontFamily="@font/autour_one"
-            android:padding="12dp"
-            android:textStyle="bold"
-            android:layout_marginStart="16dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="16dp"
-            android:layout_gravity="bottom"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:src="@drawable/share"
-            android:layout_marginRight="48dp"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="10dp"
-            app:tint="#000000"/>
-
-    </LinearLayout>
-
-</LinearLayout>
+    <TextView style="@style/Safety.Caption" android:layout_height="wrap_content" android:layout_width="match_parent" android:padding="24dp" android:text="A little preparation. More peace of mind." android:textSize="12sp" />
+  </LinearLayout>
+</ScrollView>

@@ -1,101 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    android:id="@+id/drawer_layout"
-    tools:context=".GPS">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    <include
-        layout="@layout/main_toolbar"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <EditText
-            android:id="@+id/et_source"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="none" />
-
-
-        <EditText
-            android:id="@+id/et_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@android:drawable/editbox_background"
-            android:gravity="center_vertical"
-            android:hint="Enter Location"
-            android:padding="14dp"
-            android:textColorHint="#808080"
-            android:textColor="@color/black" />
-
-
-        <Button
-            android:id="@+id/bt_track"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:text="Track Location"
-            android:textStyle="bold"
-            app:backgroundTint="#FF1919"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:id="@+id/AlreadyMember"
-            android:layout_width="411dp"
-            android:layout_height="38dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="7dp"
-            android:gravity="center"
-            android:text="*Find the nearby place in your area!"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="17sp" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="15dp"
-            android:layout_margin="5dp"
-            android:elevation="10dp">
-
-            <ImageView
-                android:id="@+id/roundedImageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/maps"
-                android:background="@color/white"
-                android:scaleType="centerCrop"/>
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/white">
-
-        <include
-            layout="@layout/main_nav_drawer"/>
-    </RelativeLayout>
-
+<?xml version='1.0' encoding='utf-8'?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/safety_background" android:id="@+id/drawer_layout" android:layout_height="match_parent" android:layout_width="match_parent">
+  <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
+    <include layout="@layout/main_toolbar" />
+    <ScrollView android:fillViewport="true" android:layout_height="0dp" android:layout_weight="1" android:layout_width="match_parent">
+      <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:padding="24dp">
+        <TextView style="@style/Safety.Title" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Find your way" />
+        <TextView style="@style/Safety.Caption" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Choose a destination. We will open the route in your maps app." />
+        <TextView style="@style/Safety.Label" android:labelFor="@id/et_source" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Starting point" />
+        <EditText style="@style/Safety.Input" android:hint="Your current location" android:id="@+id/et_source" android:inputType="none" android:layout_height="wrap_content" android:layout_width="match_parent" />
+        <TextView style="@style/Safety.Label" android:labelFor="@id/et_location" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Where would you like to go?" />
+        <EditText style="@style/Safety.Input" android:hint="Search a place or address" android:id="@+id/et_location" android:imeOptions="actionDone" android:inputType="text" android:layout_height="wrap_content" android:layout_width="match_parent" />
+        <Button style="@style/Safety.Button" android:id="@+id/bt_track" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:layout_width="match_parent" android:text="Get directions" />
+        <TextView style="@style/Safety.Caption" android:id="@+id/AlreadyMember" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_width="match_parent" android:text="Directions open in your maps app." />
+        <ImageView android:background="@drawable/safety_soft" android:contentDescription="Map illustration" android:id="@+id/roundedImageView" android:layout_height="200dp" android:layout_marginTop="24dp" android:layout_width="match_parent" android:padding="24dp" android:scaleType="fitCenter" android:src="@drawable/safety_route" />
+      </LinearLayout>
+    </ScrollView>
+  </LinearLayout>
+  <FrameLayout android:background="@color/white" android:elevation="16dp" android:layout_gravity="start" android:layout_height="match_parent" android:layout_width="320dp" android:visibility="visible">
+    <include layout="@layout/main_nav_drawer" />
+  </FrameLayout>
 </androidx.drawerlayout.widget.DrawerLayout>
-

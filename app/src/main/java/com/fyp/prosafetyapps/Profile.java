@@ -3,7 +3,7 @@ package com.fyp.prosafetyapps;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.AlertDialog;
+
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -71,6 +71,7 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        DrawerUi.configure(drawerLayout, R.id.navProfile);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         editTextName = (EditText)findViewById(R.id.et_username);
@@ -116,7 +117,7 @@ public class Profile extends AppCompatActivity {
             }
             @Override
             public void onCancelled( DatabaseError databaseError) {
-                Toast.makeText(Profile.this, databaseError.getCode(), Toast.LENGTH_SHORT).show();
+                SafetyFeedback.show(Profile.this, "Could not load your profile. Check your connection.");
             }
         });
     }
@@ -124,18 +125,19 @@ public class Profile extends AppCompatActivity {
         LayoutInflater inflater = getLayoutInflater();
         View alertLayout = inflater.inflate(R.layout.activity_edit_name, null);
         final EditText etUsername = alertLayout.findViewById(R.id.et_username);
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Name Edit");
-        // this is set the view from XML inside AlertDialog
+        etUsername.setText(profileNameTextView.getText());
+        SafetyDialog.Builder alert = new SafetyDialog.Builder(this).setEyebrow("YOUR PROFILE").setIcon(R.drawable.ic_person);
+        alert.setTitle("Edit your name");
+        // this is set the view from XML inside SafetyDialog
         alert.setView(alertLayout);
-        // disallow cancel of AlertDialog on click of back button and outside touch
-        alert.setCancelable(false);
+        // disallow cancel of SafetyDialog on click of back button and outside touch
+        alert.setCancelable(true);
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
         });
-        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alert.setPositiveButton("Save changes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String name = etUsername.getText().toString();
@@ -147,25 +149,26 @@ public class Profile extends AppCompatActivity {
                 etUsername.onEditorAction(EditorInfo.IME_ACTION_DONE);
             }
         });
-        AlertDialog dialog = alert.create();
+        SafetyDialog dialog = alert.create();
         dialog.show();
     }
     public void buttonClickedEditSurname(View view) {
         LayoutInflater inflater = getLayoutInflater();
         View alertLayout = inflater.inflate(R.layout.activity_edit_username, null);
         final EditText etUserSurname = alertLayout.findViewById(R.id.et_userSurname);
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Username Edit");
-        // this is set the view from XML inside AlertDialog
+        etUserSurname.setText(profileSurnameTextView.getText());
+        SafetyDialog.Builder alert = new SafetyDialog.Builder(this).setEyebrow("YOUR PROFILE").setIcon(R.drawable.ic_person);
+        alert.setTitle("Edit your username");
+        // this is set the view from XML inside SafetyDialog
         alert.setView(alertLayout);
-        // disallow cancel of AlertDialog on click of back button and outside touch
-        alert.setCancelable(false);
+        // disallow cancel of SafetyDialog on click of back button and outside touch
+        alert.setCancelable(true);
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
         });
-        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alert.setPositiveButton("Save changes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -178,25 +181,25 @@ public class Profile extends AppCompatActivity {
                 etUserSurname.onEditorAction(EditorInfo.IME_ACTION_DONE);
             }
         });
-        AlertDialog dialog = alert.create();
+        SafetyDialog dialog = alert.create();
         dialog.show();
     }
     public void buttonClickedEditPhoneNo(View view) {
         LayoutInflater inflater = getLayoutInflater();
         View alertLayout = inflater.inflate(R.layout.activity_edit_phone, null);
         final EditText etUserPhoneno = alertLayout.findViewById(R.id.et_userPhoneno);
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Phone Number Edit");
-        // this is set the view from XML inside AlertDialog
+        SafetyDialog.Builder alert = new SafetyDialog.Builder(this).setEyebrow("YOUR PROFILE").setIcon(R.drawable.ic_person);
+        alert.setTitle("Edit phone number");
+        // this is set the view from XML inside SafetyDialog
         alert.setView(alertLayout);
-        // disallow cancel of AlertDialog on click of back button and outside touch
-        alert.setCancelable(false);
+        // disallow cancel of SafetyDialog on click of back button and outside touch
+        alert.setCancelable(true);
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
         });
-        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alert.setPositiveButton("Save changes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String name = profileNameTextView.getText().toString();
@@ -208,43 +211,19 @@ public class Profile extends AppCompatActivity {
                 etUserPhoneno.onEditorAction(EditorInfo.IME_ACTION_DONE);
             }
         });
-        AlertDialog dialog = alert.create();
+        SafetyDialog dialog = alert.create();
         dialog.show();
     }
 
     public void navigateLogOut(View v){
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(this, LogOutHandler.class);
-        startActivity(intent);
+        SafetyDialog.confirmLogout(this);
     }
 
     public void openSelectProfilePictureDialog() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        TextView title = new TextView(this);
-        title.setText("Profile Picture");
-        title.setPadding(10, 10, 10, 10);   // Set Position
-        title.setGravity(Gravity.CENTER);
-        title.setTextColor(Color.BLACK);
-        title.setTextSize(20);
-        alertDialog.setCustomTitle(title);
-        TextView msg = new TextView(this);
-        msg.setText("Please select a profile picture");
-        msg.setGravity(Gravity.CENTER_HORIZONTAL);
-        msg.setTextColor(Color.BLACK);
-        alertDialog.setView(msg);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // Perform Action on Button
-            }
-        });
-        new Dialog(getApplicationContext());
-        alertDialog.show();
-        final Button okBT = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
-        LinearLayout.LayoutParams neutralBtnLP = (LinearLayout.LayoutParams) okBT.getLayoutParams();
-        neutralBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-        okBT.setPadding(50, 10, 10, 10);   // Set Position
-        okBT.setTextColor(Color.BLUE);
-        okBT.setLayoutParams(neutralBtnLP);
+        new SafetyDialog.Builder(this).setIcon(R.drawable.ic_person)
+                .setEyebrow("YOUR PROFILE").setTitle("Choose a profile photo")
+                .setMessage("Select an image from your gallery to personalize your profile.")
+                .setPositiveButton("Continue", null).show();
     }
 
     /*----------------------------- DRAWER LAYOUT --------------------------*/
@@ -308,29 +287,7 @@ public class Profile extends AppCompatActivity {
     }
 
     public void ClickLogout(View view){
-
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(Profile.this);
-        builder2.setTitle("Are you sure you want Log Out?");
-        builder2.setCancelable(true);
-
-        builder2.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(Profile.this, LogOutHandler.class));
-                overridePendingTransition(0,0);
-                dialog.cancel();
-            }
-        });
-
-        builder2.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
-
-        AlertDialog alert11 = builder2.create();
-        alert11.show();
-
+        SafetyDialog.confirmLogout(this);
     }
 
     protected void onPause(){

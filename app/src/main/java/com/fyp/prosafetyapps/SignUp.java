@@ -43,23 +43,42 @@ public class SignUp extends AppCompatActivity {
         SignUpButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                String email = txtSignUpEmail.getText().toString();
+                String email = txtSignUpEmail.getText().toString().trim();
                 String pass = txtSignUpPass.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
-                    Toast.makeText(getApplicationContext(),"Please enter your E-mail address",Toast.LENGTH_LONG).show();
+                    txtSignUpEmail.setError("Enter your email address");
+                    txtSignUpEmail.requestFocus();
                     return;
                 }
                 if(TextUtils.isEmpty(pass)){
-                    Toast.makeText(getApplicationContext(),"Please enter your Password",Toast.LENGTH_LONG).show();
+                    txtSignUpPass.setError("Enter a password");
+                    txtSignUpPass.requestFocus();
                 }
                 else{
+                    if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                        txtSignUpEmail.setError("Enter a valid email address");
+                        txtSignUpEmail.requestFocus();
+                        return;
+                    }
+                    if (pass.length() < 6) {
+                        txtSignUpPass.setError("Use at least 6 characters");
+                        txtSignUpPass.requestFocus();
+                        return;
+                    }
+                    SignUpButton.setEnabled(false);
+                    SignUpButton.setText("Creating account...");
                     auth.createUserWithEmailAndPassword(email,pass)
                             .addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
+                                    SignUpButton.setEnabled(true);
+                                    SignUpButton.setText("Create account");
 
                                     if (!task.isSuccessful()) {
-                                        Toast.makeText(SignUp.this, "This account already exist!",Toast.LENGTH_LONG).show();
+                                        new SafetyDialog.Builder(SignUp.this)
+                                                .setTitle("Unable to create account")
+                                                .setMessage("Check your connection and email address. If you already have an account, sign in or reset your password.")
+                                                .setPositiveButton("Try again", null).show();
                                     }
                                     else {
                                         startActivity(new Intent(SignUp.this, EditProfile.class));

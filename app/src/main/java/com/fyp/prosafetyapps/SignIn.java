@@ -3,9 +3,9 @@ package com.fyp.prosafetyapps;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
+
+
+
 import android.os.Bundle;
 
 import android.content.Intent;
@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Toast;
+
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,6 +36,20 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+        if (BuildConfig.DEBUG) {
+            android.widget.LinearLayout content = (android.widget.LinearLayout)
+                    findViewById(R.id.txttitle).getParent();
+            Button preview = new Button(this);
+            preview.setText("Explore the design  (no login needed)");
+            preview.setTextColor(getResources().getColor(R.color.safety_teal));
+            preview.setTextSize(13);
+            preview.setAllCaps(false);
+            preview.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+            content.addView(preview, 1);
+            preview.setOnClickListener(v -> startActivity(new Intent()
+                    .setClassName(this, "com.fyp.prosafetyapps.DesignPreviewActivity")));
+        }
+
         chk1 = (CheckBox) findViewById(R.id.chk1);
 
         SignInUser = (EditText) findViewById(R.id.txtSignInEmail);
@@ -44,52 +58,45 @@ public class SignIn extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        SharedPreferences pro = getSharedPreferences("pro", MODE_PRIVATE);
-        boolean firstStart = pro.getBoolean("firstStart", true);
-
-        if (firstStart) {
-            showStartDialog();
-        }
-
-        SharedPreferences safety = getSharedPreferences("safety", MODE_PRIVATE);
-        boolean secondStart = safety.getBoolean("secondStart", true);
-
-        if (secondStart) {
-            showSecondDialog();
-        }
-
-        SharedPreferences App = getSharedPreferences("App", MODE_PRIVATE);
-        boolean thirdStart = App.getBoolean("thirdStart", true);
-
-        if (thirdStart) {
-            showThirdDialog();
-        }
-
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = SignInUser.getText().toString();
+                String user = SignInUser.getText().toString().trim();
                 final String password = SignInPass.getText().toString();
 
                 if (TextUtils.isEmpty(user)) {
-                    Toast.makeText(getApplicationContext(), "Enter your username", Toast.LENGTH_SHORT).show();
+                    SignInUser.setError("Enter your email address");
+                    SignInUser.requestFocus();
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter your password", Toast.LENGTH_SHORT).show();
+                    SignInPass.setError("Enter your password");
+                    SignInPass.requestFocus();
                     return;
                 }
 
+                if (!android.util.Patterns.EMAIL_ADDRESS.matcher(user).matches()) {
+                    SignInUser.setError("Enter a valid email address");
+                    SignInUser.requestFocus();
+                    return;
+                }
+                btnSignIn.setEnabled(false);
+                btnSignIn.setText("Signing in...");
                 auth.signInWithEmailAndPassword(user, password)
                         .addOnCompleteListener(SignIn.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                btnSignIn.setEnabled(true);
+                                btnSignIn.setText("Sign in");
                                 if (!task.isSuccessful()) {
 
                                     if (password.length() < 6) {
-                                        Toast.makeText(getApplicationContext(),"Password must be more than 6 digit",Toast.LENGTH_SHORT).show();
+                                        SignInPass.setError("Password must contain at least 6 characters");
                                     } else {
-                                        Toast.makeText(getApplicationContext(),"You have an ERROR!",Toast.LENGTH_SHORT).show();
+                                        new SafetyDialog.Builder(SignIn.this)
+                                                .setTitle("Unable to sign in")
+                                                .setMessage("Check your email and password, and make sure you are connected to the internet. You can reset your password if you have forgotten it.")
+                                                .setPositiveButton("Try again", null).show();
                                     }
                                 } else {
                                     Intent intent = new Intent(SignIn.this, MainView.class);
@@ -126,57 +133,4 @@ public class SignIn extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void showStartDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle("Location Permission")
-                .setMessage("ProSafety Application enables the GPS location of the user to track the location of the sender")
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .create().show();
-
-        SharedPreferences pro = getSharedPreferences("pro", MODE_PRIVATE);
-        SharedPreferences.Editor editor = pro.edit();
-        editor.putBoolean("firstStart", false);
-        editor.apply();
-    }
-
-    private void showSecondDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle("Contact Permission")
-                .setMessage("ProSafety Application is give access for the user to choose the contact list from their contact to send the Help request Message")
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .create().show();
-
-        SharedPreferences safety = getSharedPreferences("safety", MODE_PRIVATE);
-        SharedPreferences.Editor editor = safety.edit();
-        editor.putBoolean("secondStart", false);
-        editor.apply();
-    }
-
-    private void showThirdDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle("SMS Permission")
-                .setMessage("ProSafety Application is enable SMS access for user to send the request message using the SMS")
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .create().show();
-
-        SharedPreferences App = getSharedPreferences("App", MODE_PRIVATE);
-        SharedPreferences.Editor editor = App.edit();
-        editor.putBoolean("thirdStart", false);
-        editor.apply();
-    }
 }

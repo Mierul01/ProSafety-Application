@@ -3,7 +3,7 @@ package com.fyp.prosafetyapps;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
+
 import android.os.Bundle;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -106,7 +106,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         UserInformation userinformation = new UserInformation(name,surname);
         FirebaseUser user = firebaseAuth.getCurrentUser();
         databaseReference.child(user.getUid()).setValue(userinformation);
-        Toast.makeText(getApplicationContext(),"User information updated",Toast.LENGTH_LONG).show();
+        SafetyFeedback.show(EditProfile.this, "User information updated");
     }
     @Override
     public void onClick(View view) {
@@ -139,42 +139,20 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(EditProfile.this, "Error: Uploading profile picture", Toast.LENGTH_SHORT).show();
+                SafetyFeedback.show(EditProfile.this, "Error: Uploading profile picture");
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(EditProfile.this, "Profile picture uploaded", Toast.LENGTH_SHORT).show();
+                SafetyFeedback.show(EditProfile.this, "Profile picture uploaded");
             }
         });
     }
 
     public void openSelectProfilePictureDialog() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        TextView title = new TextView(this);
-        title.setText("Profile Picture");
-        title.setPadding(10, 10, 10, 10);   // Set Position
-        title.setGravity(Gravity.CENTER);
-        title.setTextColor(Color.BLACK);
-        title.setTextSize(20);
-        alertDialog.setCustomTitle(title);
-        TextView msg = new TextView(this);
-        msg.setText("Please select a profile picture");
-        msg.setGravity(Gravity.CENTER_HORIZONTAL);
-        msg.setTextColor(Color.BLACK);
-        alertDialog.setView(msg);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // Perform Action on Button
-            }
-        });
-        new Dialog(getApplicationContext());
-        alertDialog.show();
-        final Button okBT = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
-        LinearLayout.LayoutParams neutralBtnLP = (LinearLayout.LayoutParams) okBT.getLayoutParams();
-        neutralBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-        okBT.setPadding(50, 10, 10, 10);   // Set Position
-        okBT.setTextColor(Color.BLUE);
-        okBT.setLayoutParams(neutralBtnLP);
+        new SafetyDialog.Builder(this).setIcon(R.drawable.ic_person)
+                .setEyebrow("YOUR PROFILE").setTitle("Choose a profile photo")
+                .setMessage("Select an image from your gallery to personalize your profile.")
+                .setPositiveButton("Continue", null).show();
     }
 }

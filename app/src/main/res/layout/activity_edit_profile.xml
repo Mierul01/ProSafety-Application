@@ -1,127 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    tools:context=".EditProfile">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:background="@drawable/gradientbackground">
-
-        <ImageView
-            android:id="@+id/update_imageView"
-            android:layout_width="match_parent"
-            android:layout_height="152dp"
-            android:layout_marginTop="70dp"
-            android:gravity="center_vertical"
-            android:src="@drawable/defavatar"
-            app:layout_anchor="@+id/appbar"
-            app:layout_anchorGravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textViewProfile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/autour_one"
-            android:gravity="center_horizontal"
-            android:text="CREATE PROFILE"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:layout_marginBottom="40dp"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        android:padding="10dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/TextViewName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif-black"
-                android:text="Full name"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/EditTextName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName|textCapSentences"
-                android:hint="Enter your name"
-                android:textColor="@color/black"/>
-
-            <TextView
-                android:id="@+id/TextViewSurName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-black"
-                android:text="Username"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/EditTextSurname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName|textCapSentences"
-                android:hint="Enter your username"
-                android:textColor="@color/black"/>
-
-            <TextView
-                android:id="@+id/TextViewEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:fontFamily="sans-serif-black"
-                android:text="E-mail"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textViewEmailAdress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:hint="Your email address"
-                android:textColor="@color/colorPrimaryDark"/>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSaveButton"
-                android:layout_width="277dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="75dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/button_btn"
-                android:text="CONTINUE"
-                android:layout_gravity="center"
-                android:textColor="@color/white" />
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+<?xml version='1.0' encoding='utf-8'?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/safety_background" android:layout_height="match_parent" android:layout_width="match_parent">
+  <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:padding="28dp">
+    <ImageView android:contentDescription="Choose a profile photo" android:id="@+id/update_imageView" android:layout_gravity="center_horizontal" android:layout_height="96dp" android:layout_width="96dp" android:src="@drawable/defavatar" />
+    <TextView style="@style/Safety.Title" android:id="@+id/textViewProfile" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:layout_width="match_parent" android:text="Make it yours." />
+    <TextView style="@style/Safety.Caption" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Add your details to complete your profile." />
+    <TextView style="@style/Safety.Label" android:id="@+id/TextViewName" android:labelFor="@id/EditTextName" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Full name" />
+    <EditText style="@style/Safety.Input" android:hint="Enter your full name" android:id="@+id/EditTextName" android:imeOptions="actionNext" android:inputType="textPersonName|textCapWords" android:layout_height="wrap_content" android:layout_width="match_parent" />
+    <TextView style="@style/Safety.Label" android:id="@+id/TextViewSurName" android:labelFor="@id/EditTextSurname" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Username" />
+    <EditText style="@style/Safety.Input" android:hint="Choose a username" android:id="@+id/EditTextSurname" android:imeOptions="actionDone" android:inputType="text" android:layout_height="wrap_content" android:layout_width="match_parent" />
+    <TextView style="@style/Safety.Label" android:id="@+id/TextViewEmail" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Email address" />
+    <TextView style="@style/Safety.Body" android:background="@drawable/safety_surface" android:id="@+id/textViewEmailAdress" android:layout_height="wrap_content" android:layout_width="match_parent" android:padding="16dp" android:text="Your account email" />
+    <androidx.appcompat.widget.AppCompatButton style="@style/Safety.Button" android:id="@+id/btnSaveButton" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:layout_width="match_parent" android:text="Save and continue" />
+  </LinearLayout>
+</ScrollView>

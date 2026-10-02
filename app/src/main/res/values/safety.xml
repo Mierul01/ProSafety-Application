@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <color name="safety_background">#F4F7FA</color>
+  <color name="safety_navy">#162D44</color>
+  <color name="safety_teal">#007F75</color>
+  <color name="safety_muted">#526779</color>
+  <color name="safety_border">#D9E3EA</color>
+  <color name="safety_soft">#E7F4F0</color>
+  <color name="safety_red">#B52C42</color>
+  <style name="Safety.Body" parent="TextAppearance.AppCompat">
+    <item name="android:textColor">@color/safety_navy</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:fontFamily">sans-serif</item>
+    <item name="android:lineSpacingExtra">4dp</item>
+  </style>
+  <style name="Safety.Caption" parent="Safety.Body">
+    <item name="android:textColor">@color/safety_muted</item>
+    <item name="android:textSize">14sp</item>
+  </style>
+  <style name="Safety.Title" parent="Safety.Body">
+    <item name="android:textSize">28sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:layout_marginBottom">8dp</item>
+  </style>
+  <style name="Safety.Section" parent="Safety.Body">
+    <item name="android:textSize">20sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:layout_marginTop">24dp</item>
+    <item name="android:layout_marginBottom">12dp</item>
+  </style>
+  <style name="Safety.CardTitle" parent="Safety.Body">
+    <item name="android:textSize">17sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:layout_marginTop">14dp</item>
+    <item name="android:layout_marginBottom">4dp</item>
+  </style>
+  <style name="Safety.Label" parent="Safety.Body">
+    <item name="android:textSize">14sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:layout_marginTop">20dp</item>
+    <item name="android:layout_marginBottom">8dp</item>
+  </style>
+  <style name="Safety.Input" parent="Widget.AppCompat.EditText">
+    <item name="android:background">@drawable/safety_input</item>
+    <item name="android:padding">16dp</item>
+    <item name="android:minHeight">56dp</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:textColor">@color/safety_navy</item>
+    <item name="android:textColorHint">@color/safety_muted</item>
+    <item name="android:singleLine">true</item>
+  </style>
+  <style name="Safety.Button" parent="Widget.AppCompat.Button">
+    <item name="android:background">@drawable/safety_button</item>
+    <item name="backgroundTint">@null</item>
+    <item name="android:textColor">@color/white</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:minHeight">56dp</item>
+    <item name="android:padding">12dp</item>
+  </style>
+  <color name="safety_emergency">#FFF0F0</color>
+  <style name="Safety.Eyebrow" parent="Safety.Caption">
+    <item name="android:textSize">11sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:letterSpacing">0.08</item>
+  </style>
+</resources>

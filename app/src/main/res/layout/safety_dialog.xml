@@ -1,0 +1,16 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/dialog_surface" android:fillViewport="true">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
+    <FrameLayout android:id="@+id/dialogIconSurface" android:layout_width="64dp" android:layout_height="64dp" android:background="@drawable/safety_soft">
+      <ImageView android:id="@+id/dialogIcon" android:layout_width="32dp" android:layout_height="32dp" android:layout_gravity="center" android:importantForAccessibility="no" />
+    </FrameLayout>
+    <TextView android:id="@+id/dialogEyebrow" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/Safety.Eyebrow" android:layout_marginTop="20dp" android:textColor="@color/safety_muted" />
+    <TextView android:id="@+id/dialogTitle" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/Safety.Title" android:textSize="24sp" android:layout_marginTop="8dp" android:accessibilityHeading="true" />
+    <TextView android:id="@+id/dialogMessage" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/Safety.Caption" android:textSize="15sp" android:layout_marginTop="4dp" />
+    <FrameLayout android:id="@+id/dialogContent" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/safety_border" android:layout_marginTop="24dp" android:layout_marginBottom="20dp" android:importantForAccessibility="no" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+      <androidx.appcompat.widget.AppCompatButton android:id="@+id/dialogPrimary" android:layout_width="match_parent" android:layout_height="52dp" style="@style/Safety.Button" />
+      <androidx.appcompat.widget.AppCompatButton android:id="@+id/dialogSecondary" android:layout_width="match_parent" android:layout_height="52dp" style="@style/Safety.Button" android:background="@drawable/safety_input" android:textColor="@color/safety_navy" android:layout_marginTop="10dp" />
+    </LinearLayout>
+  </LinearLayout>
+</ScrollView>

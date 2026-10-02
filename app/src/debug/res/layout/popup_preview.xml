@@ -1,0 +1,12 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/safety_background">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/Safety.Title" android:text="Thoughtful pop-ups" />
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/Safety.Caption" android:text="Review the actual dialog designs. These previews never log out, delete contacts or save account changes." />
+    <Button android:id="@+id/previewLogout" android:layout_width="match_parent" android:layout_height="56dp" style="@style/Safety.Button" android:text="Log out confirmation" android:layout_marginTop="24dp" />
+    <Button android:id="@+id/previewRemove" android:layout_width="match_parent" android:layout_height="56dp" style="@style/Safety.Button" android:text="Remove contact" android:layout_marginTop="12dp" />
+    <Button android:id="@+id/previewError" android:layout_width="match_parent" android:layout_height="56dp" style="@style/Safety.Button" android:text="Account error" android:layout_marginTop="12dp" />
+    <Button android:id="@+id/previewSuccess" android:layout_width="match_parent" android:layout_height="56dp" style="@style/Safety.Button" android:text="Reset link confirmation" android:layout_marginTop="12dp" />
+    <Button android:id="@+id/previewEdit" android:layout_width="match_parent" android:layout_height="56dp" style="@style/Safety.Button" android:text="Edit profile dialog" android:layout_marginTop="12dp" />
+    <Button android:id="@+id/previewFeedback" android:layout_width="match_parent" android:layout_height="56dp" style="@style/Safety.Button" android:text="Feedback banner" android:layout_marginTop="12dp" />
+  </LinearLayout>
+</ScrollView>

@@ -33,6 +33,7 @@ public class NewsPage extends AppCompatActivity {
         webView.loadUrl(webUrl);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        DrawerUi.configure(drawerLayout, R.id.navNews);
 
 
         webView.setWebViewClient(new WebViewClient() {
@@ -128,10 +129,7 @@ public class NewsPage extends AppCompatActivity {
     }
 
     public void ClickLogout(View view){
-
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(this, LogOutHandler.class);
-        startActivity(intent);
+        SafetyDialog.confirmLogout(this);
     }
 
     protected void onPause(){

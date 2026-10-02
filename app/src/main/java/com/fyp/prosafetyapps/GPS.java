@@ -3,7 +3,7 @@ package com.fyp.prosafetyapps;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.AlertDialog;
+
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,6 +34,7 @@ public class GPS extends AppCompatActivity {
         btTrack = findViewById(R.id.bt_track);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        DrawerUi.configure(drawerLayout, R.id.navDirections);
 
         btTrack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +44,7 @@ public class GPS extends AppCompatActivity {
 
                 if(sDestination.equals("")){
 
-                    Toast.makeText(getApplicationContext(),"You must enter location first",Toast.LENGTH_SHORT).show();
+                    SafetyFeedback.show(GPS.this, "You must enter location first");
 
                 }else{
                     DisplayTrack(sSource,sDestination);
@@ -132,29 +133,7 @@ public class GPS extends AppCompatActivity {
     }
 
     public void ClickLogout(View view){
-
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(GPS.this);
-        builder2.setTitle("Are you sure you want Log Out?");
-        builder2.setCancelable(true);
-
-        builder2.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(GPS.this, LogOutHandler.class));
-                overridePendingTransition(0,0);
-                dialog.cancel();
-            }
-        });
-
-        builder2.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
-
-        AlertDialog alert11 = builder2.create();
-        alert11.show();
-
+        SafetyDialog.confirmLogout(this);
     }
 
     protected void onPause(){

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 
 import java.util.List;
 
@@ -51,11 +51,12 @@ public class CustomAdapter extends ArrayAdapter<ContactModel> {
             @Override
             public boolean onLongClick(View view) {
 
-                //generate an MaterialAlertDialog Box
-                new MaterialAlertDialogBuilder(context)
-                        .setTitle("Remove Contact")
-                        .setMessage("Are you sure want to remove this contact?")
-                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                //generate an MaterialSafetyDialog Box
+                new SafetyDialog.Builder(context)
+                        .setTitle("Remove trusted contact?")
+                        .setEyebrow("YOUR SAFETY CIRCLE").setIcon(R.drawable.ic_remove_contact).setDestructive(true)
+                        .setMessage("This person will no longer receive your shake-triggered help messages. You can add them again later.")
+                        .setPositiveButton("Remove contact", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //delete the specified contact from the database
@@ -64,19 +65,20 @@ public class CustomAdapter extends ArrayAdapter<ContactModel> {
                                 contacts.remove(c);
                                 //notify the listview that dataset has been changed
                                 notifyDataSetChanged();
-                                Toast.makeText(context, "Contact removed!", Toast.LENGTH_SHORT).show();
+                                SafetyFeedback.show(context, "Contact removed!");
                             }
                         })
-                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Keep contact", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                             }
                         })
                         .show();
-                return false;
+                return true;
             }
         });
+        convertView.findViewById(R.id.removeContact).setOnClickListener(v -> linearLayout.performLongClick());
         // Return the completed view to render on screen
         return convertView;
     }

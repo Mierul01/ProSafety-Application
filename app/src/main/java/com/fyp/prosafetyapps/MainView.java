@@ -6,7 +6,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
-import android.app.AlertDialog;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -26,6 +26,17 @@ public class MainView extends AppCompatActivity {
         setContentView(R.layout.activity_main_view);
 
         CrdMain = (CardView)findViewById(R.id.CrdMain);
+        if (BuildConfig.DEBUG) {
+            android.widget.Button preview = new android.widget.Button(this);
+            preview.setText("Explore the design  (no login needed)");
+            preview.setTextColor(getResources().getColor(R.color.safety_teal));
+            preview.setTextSize(13);
+            preview.setAllCaps(false);
+            preview.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+            ((android.widget.LinearLayout)CrdMain.getParent()).addView(preview, 0);
+            preview.setOnClickListener(v -> startActivity(new Intent()
+                    .setClassName(this, "com.fyp.prosafetyapps.DesignPreviewActivity")));
+        }
         CrdNews = (CardView)findViewById(R.id.CrdNews);
         CrdNumber = (CardView)findViewById(R.id.CrdNumber);
         CrdTrack = (CardView)findViewById(R.id.CrdTrack);
@@ -33,6 +44,7 @@ public class MainView extends AppCompatActivity {
         CrdInstruct = (CardView)findViewById(R.id.CrdInstruct);
 
         drawerLayout =(DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerUi.configure(drawerLayout, R.id.navHome);
 
         CrdMain.setOnClickListener(new View.OnClickListener(){
 
@@ -179,29 +191,7 @@ public class MainView extends AppCompatActivity {
     }
 
     public void ClickLogout(View view){
-
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(MainView.this);
-        builder2.setTitle("Are you sure you want Log Out?");
-        builder2.setCancelable(true);
-
-        builder2.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MainView.this, LogOutHandler.class));
-                overridePendingTransition(0,0);
-                dialog.cancel();
-            }
-        });
-
-        builder2.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
-
-        AlertDialog alert11 = builder2.create();
-        alert11.show();
-
+        SafetyDialog.confirmLogout(this);
     }
 
     public void ClickEmergency(View view){
@@ -211,29 +201,10 @@ public class MainView extends AppCompatActivity {
     }
 
     public static void logout(Activity activity) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-
-        builder.setTitle("Logout");
-
-        builder.setMessage("Are your sure?");
-
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                activity.finishAffinity();
-
-                System.exit(0);
-            }
-        });
-
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.show();
+        new SafetyDialog.Builder(activity).setTitle("Close ProSafety?")
+                .setMessage("You can open the app again whenever you need it.")
+                .setNegativeButton("Keep open", null)
+                .setPositiveButton("Close app", (dialog, which) -> activity.finishAffinity()).show();
     }
 
     public static void redirectActivity(Activity activity, Class aClass) {

@@ -3,7 +3,7 @@ package com.fyp.prosafetyapps;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.AlertDialog;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -22,6 +22,7 @@ public class AboutUs extends AppCompatActivity {
         setContentView(R.layout.activity_about_us);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        DrawerUi.configure(drawerLayout, R.id.navSupport);
     }
 
     /*----------------------------- DRAWER LAYOUT --------------------------*/
@@ -73,29 +74,14 @@ public class AboutUs extends AppCompatActivity {
     }
 
     public void ClickLogout(View view){
+        SafetyDialog.confirmLogout(this);
+    }
 
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(AboutUs.this);
-        builder2.setTitle("Are you sure you want Log Out?");
-        builder2.setCancelable(true);
-
-        builder2.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(AboutUs.this, LogOutHandler.class));
-                overridePendingTransition(0,0);
-                dialog.cancel();
-            }
-        });
-
-        builder2.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
-
-        AlertDialog alert11 = builder2.create();
-        alert11.show();
-
+    public void ClickShare(View view) {
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.putExtra(Intent.EXTRA_TEXT, "ProSafety — your everyday safety companion. https://github.com/Mierul01/ProSafety-Application");
+        startActivity(Intent.createChooser(share, "Share ProSafety"));
     }
 
     protected void onPause(){

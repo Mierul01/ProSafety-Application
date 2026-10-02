@@ -37,19 +37,32 @@ public class ResetPassword extends AppCompatActivity {
             public void onClick(View v) {
                 String email = inputEmail.getText().toString().trim();
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplication(), "Enter your mail address", Toast.LENGTH_SHORT).show();
+                    inputEmail.setError("Enter your email address");
+                    inputEmail.requestFocus();
                     return;
                 }
 
+                if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    inputEmail.setError("Enter a valid email address");
+                    inputEmail.requestFocus();
+                    return;
+                }
+                btnReset.setEnabled(false);
+                btnReset.setText("Sending link...");
                 auth.sendPasswordResetEmail(email)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
+                                btnReset.setEnabled(true);
+                                btnReset.setText("Send reset link");
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(ResetPassword.this, "We send you an e-mail", Toast.LENGTH_SHORT).show();
+                                    new SafetyDialog.Builder(ResetPassword.this).setEyebrow("PASSWORD RESET").setIcon(R.drawable.ic_email)
+                                            .setTitle("Check your inbox")
+                                            .setMessage("If this email is registered, you will receive a password reset link. Check your spam folder too.")
+                                            .setPositiveButton("Got it", null).show();
 
                                 } else {
-                                    Toast.makeText(ResetPassword.this, "Error", Toast.LENGTH_SHORT).show();
+                                    SafetyFeedback.show(ResetPassword.this, "Could not send the link. Check your connection and try again.");
                                 }
                             }
                         });
